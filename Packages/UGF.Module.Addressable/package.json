@@ -8,5 +8,12 @@
         "name": "Unity Game Framework",
         "url": "https://github.com/unity-game-framework"
     },
-    "dependencies": {}
+    "dependencies": {
+        "com.ugf.module.assets": "0.1.0-preview",
+        "com.ugf.module.scenes": "0.1.0-preview",
+        "com.ugf.logs": "1.1.0",
+        "com.unity.addressables": "1.2.4",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+    }
 }
