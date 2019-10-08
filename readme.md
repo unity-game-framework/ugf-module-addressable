@@ -4,13 +4,16 @@ UGF.Module.Addressable
 
 ## Info
 
-- **Version**: `0.0.0-preview`
+- **Version**: `0.1.0-preview`
 - **Unity Version**: `2019.3.0`
 - **Api Compatibility Level**: `.NET Standard 2.0`
 
 ### Dependencies
 
-- N/A
+- [UGF.Module.Assets](https://github.com/unity-game-framework/ugf-module-assets): `0.1.0-preview`
+- [UGF.Module.Scenes](https://github.com/unity-game-framework/ugf-module-scenes): `0.1.0-preview`
+- [UGF.Logs](https://github.com/unity-game-framework/ugf-module-assets): `1.1.0`
+- [Addressables](https://bintray.com/unity/unity/com.unity.addressables): `1.2.4`
 
 ### Changelog
 
@@ -19,7 +22,7 @@ UGF.Module.Addressable
 ### Registries
 
 - [Stable][2] (N/A)
-- [Develop][3] (N/A)
+- [Develop][3]
 
 ## Description
 
