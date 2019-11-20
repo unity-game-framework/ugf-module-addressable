@@ -1,13 +1,9 @@
 using System;
-using System.Collections;
+using System.Threading.Tasks;
 using UGF.Application.Runtime;
-using UGF.Coroutines.Runtime;
 using UGF.Logs.Runtime;
-using UGF.Module.Addressable.Runtime.Coroutines;
 using UGF.Module.Scenes.Runtime;
 using UnityEngine.AddressableAssets;
-using UnityEngine.AddressableAssets.ResourceLocators;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
@@ -15,35 +11,45 @@ namespace UGF.Module.Addressable.Runtime
 {
     public class AddressableSceneModule : ApplicationModuleBaseAsync, ISceneModule
     {
-        protected override IEnumerator OnInitializeAsync()
+        public override async Task InitializeAsync()
         {
-            AsyncOperationHandle<IResourceLocator> operation = Addressables.InitializeAsync();
+            await Addressables.InitializeAsync().Task;
 
-            while (!operation.IsDone)
-            {
-                yield return null;
-            }
-
-            Log.Debug($"AddressableSceneModule initialized: locators:'{Addressables.ResourceLocators.Count}', runtimePath:'{Addressables.RuntimePath}'.");
+            Log.Debug($"AddressableSceneModule: runtimePath:'{Addressables.RuntimePath}'.");
         }
 
-        public ISceneLoadCoroutine LoadSceneAsync(string sceneName, SceneLoadParameters parameters)
+        public void LoadScene(string sceneName, LoadSceneParameters parameters)
         {
             if (string.IsNullOrEmpty(sceneName)) throw new ArgumentException("Value cannot be null or empty.", nameof(sceneName));
 
-            AsyncOperationHandle<SceneInstance> handler = Addressables.LoadSceneAsync(sceneName, parameters.Mode, parameters.Activate);
-
-            return new OperationHandleSceneCoroutine(handler, parameters);
+            Addressables.LoadSceneAsync(sceneName, parameters.loadSceneMode);
         }
 
-        public ICoroutine UnloadSceneAsync(Scene scene, SceneUnloadParameters parameters)
+        public async Task<Scene> LoadSceneAsync(string sceneName, LoadSceneParameters parameters)
+        {
+            if (string.IsNullOrEmpty(sceneName)) throw new ArgumentException("Value cannot be null or empty.", nameof(sceneName));
+
+            SceneInstance instance = await Addressables.LoadSceneAsync(sceneName, parameters.loadSceneMode).Task;
+
+            return instance.Scene;
+        }
+
+        public void UnloadScene(Scene scene, UnloadSceneOptions unloadOptions)
         {
             if (!scene.IsValid()) throw new ArgumentException("The specified scene is invalid.", nameof(scene));
 
-            SceneInstance sceneInstance = AddressableUtility.GetAsSceneInstance(scene);
-            AsyncOperationHandle<SceneInstance> handler = Addressables.UnloadSceneAsync(sceneInstance);
+            SceneInstance instance = AddressableUtility.GetAsSceneInstance(scene);
 
-            return new OperationHandleCoroutine<SceneInstance>(handler);
+            Addressables.UnloadSceneAsync(instance);
+        }
+
+        public async Task UnloadSceneAsync(Scene scene, UnloadSceneOptions unloadOptions)
+        {
+            if (!scene.IsValid()) throw new ArgumentException("The specified scene is invalid.", nameof(scene));
+
+            SceneInstance instance = AddressableUtility.GetAsSceneInstance(scene);
+
+            await Addressables.UnloadSceneAsync(instance).Task;
         }
     }
 }

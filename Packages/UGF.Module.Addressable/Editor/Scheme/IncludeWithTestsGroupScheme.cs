@@ -1,5 +1,6 @@
 using UGF.Module.Addressable.Editor.Settings;
 using UnityEditor;
+using UnityEngine;
 
 namespace UGF.Module.Addressable.Editor.Scheme
 {
@@ -20,13 +21,18 @@ namespace UGF.Module.Addressable.Editor.Scheme
 
         public override void OnGUI()
         {
+            if (GUILayout.Button("Open UGF.Addressables settings"))
+            {
+                SettingsService.OpenProjectSettings("Project/UGF/Addressable");
+            }
+
             if (AddressableEditorSettings.IncludeTestGroups)
             {
                 EditorGUILayout.HelpBox("Include test groups options is enabled: this group will be included in build.", MessageType.Info);
             }
             else
             {
-                EditorGUILayout.HelpBox("Include test groups options is disabled: this group will be excluded from build.\nGo to ProjectSettings/UGF/Addressable to change that option.", MessageType.Warning);
+                EditorGUILayout.HelpBox("Include test groups options is disabled: this group will be excluded from build.", MessageType.Warning);
             }
         }
     }
