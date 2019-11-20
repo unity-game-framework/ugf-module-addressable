@@ -22,7 +22,7 @@ namespace UGF.Module.Addressable.Runtime
                 yield return null;
             }
 
-            Log.Debug($"AddressableAssetsModule initialized: locators:'{Addressables.ResourceLocators.Count}', runtimePath:'{Addressables.RuntimePath}'.");
+            Log.Debug($"AddressableAssetsModule initialized: runtimePath:'{Addressables.RuntimePath}'.");
         }
 
         public ICoroutine<T> LoadAsync<T>(string assetName)

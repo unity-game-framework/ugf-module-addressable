@@ -24,7 +24,7 @@ namespace UGF.Module.Addressable.Runtime
                 yield return null;
             }
 
-            Log.Debug($"AddressableSceneModule initialized: locators:'{Addressables.ResourceLocators.Count}', runtimePath:'{Addressables.RuntimePath}'.");
+            Log.Debug($"AddressableSceneModule: runtimePath:'{Addressables.RuntimePath}'.");
         }
 
         public ISceneLoadCoroutine LoadSceneAsync(string sceneName, SceneLoadParameters parameters)
