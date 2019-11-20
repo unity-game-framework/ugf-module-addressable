@@ -1,47 +1,44 @@
 using System;
-using System.Collections;
+using System.Threading.Tasks;
 using UGF.Application.Runtime;
-using UGF.Coroutines.Runtime;
 using UGF.Logs.Runtime;
-using UGF.Module.Addressable.Runtime.Coroutines;
 using UGF.Module.Assets.Runtime;
 using UnityEngine.AddressableAssets;
-using UnityEngine.AddressableAssets.ResourceLocators;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace UGF.Module.Addressable.Runtime
 {
     public class AddressableAssetsModule : ApplicationModuleBaseAsync, IAssetsModule
     {
-        protected override IEnumerator OnInitializeAsync()
+        public override async Task InitializeAsync()
         {
-            AsyncOperationHandle<IResourceLocator> operation = Addressables.InitializeAsync();
+            await Addressables.InitializeAsync().Task;
 
-            while (!operation.IsDone)
-            {
-                yield return null;
-            }
-
-            Log.Debug($"AddressableAssetsModule initialized: runtimePath:'{Addressables.RuntimePath}'.");
+            Log.Debug($"AddressableSceneModule: runtimePath:'{Addressables.RuntimePath}'.");
         }
 
-        public ICoroutine<T> LoadAsync<T>(string assetName)
+        public T Load<T>(string assetName)
+        {
+            throw new NotSupportedException("Loading assets synchronously not supported by Addressables.");
+        }
+
+        public object Load(string assetName, Type assetType)
+        {
+            throw new NotSupportedException("Loading assets synchronously not supported by Addressables.");
+        }
+
+        public async Task<T> LoadAsync<T>(string assetName)
         {
             if (string.IsNullOrEmpty(assetName)) throw new ArgumentException("Value cannot be null or empty.", nameof(assetName));
 
-            AsyncOperationHandle<T> handler = Addressables.LoadAssetAsync<T>(assetName);
-
-            return new OperationHandleCoroutine<T>(handler);
+            return await Addressables.LoadAssetAsync<T>(assetName).Task;
         }
 
-        public ICoroutine<object> LoadAsync(string assetName, Type assetType)
+        public async Task<object> LoadAsync(string assetName, Type assetType)
         {
             if (string.IsNullOrEmpty(assetName)) throw new ArgumentException("Value cannot be null or empty.", nameof(assetName));
             if (assetType == null) throw new ArgumentNullException(nameof(assetType));
 
-            AsyncOperationHandle<object> handler = Addressables.LoadAssetAsync<object>(assetName);
-
-            return new OperationHandleCoroutine<object>(handler);
+            return await Addressables.LoadAssetAsync<object>(assetName).Task;
         }
 
         public void Release<T>(T asset)
