@@ -14,7 +14,7 @@ namespace UGF.Module.Addressable.Editor.Build
     /// If an asset group contains more than one '<see cref="IncludeGroupSchemeBase"/>',
     /// than all must to pass condition check, to make this asset group to be included in build.
     /// </remarks>
-    [CreateAssetMenu(fileName = "BuildScriptWithIncludes.asset", menuName = "Addressable Assets/Data Builders/Packed Mode Includes")]
+    [CreateAssetMenu(fileName = "BuildScriptWithIncludes.asset", menuName = "Addressables/Content Builders/Default Build With Includes")]
     public class BuildScriptWithIncludes : BuildScriptPackedMode
     {
         public override string Name { get; } = "Packed Mode Includes";

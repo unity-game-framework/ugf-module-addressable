@@ -344,7 +344,6 @@ PlayerSettings:
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
-  vuforiaEnabled: 0
   m_TemplateCustomTags: {}
   mobileMTRendering:
     Android: 1
@@ -559,6 +558,7 @@ PlayerSettings:
   ps4contentSearchFeaturesUsed: 0
   ps4attribEyeToEyeDistanceSettingVR: 0
   ps4IncludedModules: []
+  ps4attribVROutputEnabled: 0
   monoEnv: 
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
@@ -578,7 +578,18 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: UGF_LOG_INCLUDE_EDITOR
+    4: UGF_LOG_INCLUDE_EDITOR
+    7: UGF_LOG_INCLUDE_EDITOR
+    13: UGF_LOG_INCLUDE_EDITOR
+    14: UGF_LOG_INCLUDE_EDITOR
+    19: UGF_LOG_INCLUDE_EDITOR
+    21: UGF_LOG_INCLUDE_EDITOR
+    25: UGF_LOG_INCLUDE_EDITOR
+    27: UGF_LOG_INCLUDE_EDITOR
+    28: UGF_LOG_INCLUDE_EDITOR
+    29: UGF_LOG_INCLUDE_EDITOR
   platformArchitecture: {}
   scriptingBackend:
     Standalone: 1
