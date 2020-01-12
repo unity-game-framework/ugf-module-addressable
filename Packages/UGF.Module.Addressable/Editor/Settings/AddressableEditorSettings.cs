@@ -24,15 +24,14 @@ namespace UGF.Module.Addressable.Editor.Settings
             set
             {
                 m_settings.Data.IncludeTestGroups = value;
-                m_settings.Save();
+                m_settings.SaveSettings();
             }
         }
 
         private static readonly CustomSettingsEditorPackage<AddressableEditorSettingsData> m_settings = new CustomSettingsEditorPackage<AddressableEditorSettingsData>
         (
             "UGF.Addressable",
-            "AddressableEditorSettings",
-            CustomSettingsEditorUtility.DefaultPackageExternalFolder
+            "AddressableEditorSettings"
         );
 
         [SettingsProvider, UsedImplicitly]

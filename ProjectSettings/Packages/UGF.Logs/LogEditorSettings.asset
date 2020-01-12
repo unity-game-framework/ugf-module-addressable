@@ -17,5 +17,5 @@ MonoBehaviour:
   m_warning: 0
   m_error: 0
   m_exception: 0
-  m_alwaysIncludeInEditor: 1
+  m_alwaysIncludeInEditor: 0
   m_alwaysIncludeInDevelopmentBuild: 0
