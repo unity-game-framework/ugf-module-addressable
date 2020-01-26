@@ -7,9 +7,9 @@ using UnityEngine.AddressableAssets;
 
 namespace UGF.Module.Addressable.Runtime
 {
-    public class AddressableAssetsModule : ApplicationModuleBaseAsync, IAssetsModule
+    public class AddressableAssetsModule : ApplicationModuleBase, IAssetsModule, IApplicationModuleAsync
     {
-        public override async Task InitializeAsync()
+        public async Task InitializeAsync()
         {
             await Addressables.InitializeAsync().Task;
 
