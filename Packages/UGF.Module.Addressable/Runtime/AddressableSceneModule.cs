@@ -9,9 +9,9 @@ using UnityEngine.SceneManagement;
 
 namespace UGF.Module.Addressable.Runtime
 {
-    public class AddressableSceneModule : ApplicationModuleBaseAsync, ISceneModule
+    public class AddressableSceneModule : ApplicationModuleBase, ISceneModule, IApplicationModuleAsync
     {
-        public override async Task InitializeAsync()
+        public async Task InitializeAsync()
         {
             await Addressables.InitializeAsync().Task;
 
