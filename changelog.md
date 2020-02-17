@@ -26,7 +26,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Nothing.
 
-## 0.5.0-preview - 2020-01-01
+## 0.6.0-preview - 2020-02-17
+- [Commits](https://github.com/unity-game-framework/ugf-module-addressable/compare/0.5.0-preview...0.6.0-preview)
+- [Milestone](https://github.com/unity-game-framework/ugf-module-addressable/milestone/6?closed=1)
+
+### Changed
+- Package dependencies:
+    - `com.ugf.application`: from `4.0.0-preview` to `4.1.0-preview`.
+    - `com.ugf.module.scenes`: from `0.3.0-preview` to `0.4.0-preview`.
+    - `com.ugf.addressables`: from `1.5.0` to `1.6.2`.
+- Change `AddressableSceneModule` implementation with new `SceneModule`.
+- Change `AddressableSceneModule.SceneLoad` and `AddressableSceneModule.SceneUnload` not supported anymore.
+
+## 0.5.0-preview - 2020-01-26
 - [Commits](https://github.com/unity-game-framework/ugf-module-addressable/compare/0.4.0-preview...0.5.0-preview)
 - [Milestone](https://github.com/unity-game-framework/ugf-module-addressable/milestone/5?closed=1)
 
