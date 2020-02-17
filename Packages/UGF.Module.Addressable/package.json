@@ -9,12 +9,11 @@
         "url": "https://github.com/unity-game-framework"
     },
     "dependencies": {
-        "com.ugf.application": "4.0.0-preview",
+        "com.ugf.application": "4.1.0-preview",
+        "com.ugf.initialize": "2.2.0-preview",
         "com.ugf.module.assets": "0.3.0-preview",
-        "com.ugf.module.scenes": "0.3.0-preview",
+        "com.ugf.module.scenes": "0.4.0-preview",
         "com.ugf.logs": "2.0.0",
-        "com.unity.addressables": "1.5.0",
-        "com.unity.modules.assetbundle": "1.0.0",
-        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+        "com.unity.addressables": "1.6.2"
     }
 }

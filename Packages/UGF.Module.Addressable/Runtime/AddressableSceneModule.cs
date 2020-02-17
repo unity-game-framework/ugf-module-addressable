@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using UGF.Application.Runtime;
+using UGF.Elements.Runtime;
 using UGF.Logs.Runtime;
 using UGF.Module.Scenes.Runtime;
 using UnityEngine.AddressableAssets;
@@ -9,8 +10,12 @@ using UnityEngine.SceneManagement;
 
 namespace UGF.Module.Addressable.Runtime
 {
-    public class AddressableSceneModule : ApplicationModuleBase, ISceneModule, IApplicationModuleAsync
+    public class AddressableSceneModule : SceneModuleBase, IApplicationModuleAsync
     {
+        public AddressableSceneModule(IElementContext context) : base(context)
+        {
+        }
+
         public async Task InitializeAsync()
         {
             await Addressables.InitializeAsync().Task;
@@ -18,35 +23,25 @@ namespace UGF.Module.Addressable.Runtime
             Log.Debug($"AddressableSceneModule: runtimePath:'{Addressables.RuntimePath}'.");
         }
 
-        public void LoadScene(string sceneName, LoadSceneParameters parameters)
+        protected override Scene OnLoadScene(string sceneName, SceneLoadParameters parameters)
         {
-            if (string.IsNullOrEmpty(sceneName)) throw new ArgumentException("Value cannot be null or empty.", nameof(sceneName));
-
-            Addressables.LoadSceneAsync(sceneName, parameters.loadSceneMode);
+            throw new NotSupportedException("Addressable does not support immediate scene load.");
         }
 
-        public async Task<Scene> LoadSceneAsync(string sceneName, LoadSceneParameters parameters)
+        protected override async Task<Scene> OnLoadSceneAsync(string sceneName, SceneLoadParameters parameters)
         {
-            if (string.IsNullOrEmpty(sceneName)) throw new ArgumentException("Value cannot be null or empty.", nameof(sceneName));
-
-            SceneInstance instance = await Addressables.LoadSceneAsync(sceneName, parameters.loadSceneMode).Task;
+            SceneInstance instance = await Addressables.LoadSceneAsync(sceneName, parameters.AddMode).Task;
 
             return instance.Scene;
         }
 
-        public void UnloadScene(Scene scene, UnloadSceneOptions unloadOptions)
+        protected override void OnUnloadScene(Scene scene, SceneUnloadParameters parameters)
         {
-            if (!scene.IsValid()) throw new ArgumentException("The specified scene is invalid.", nameof(scene));
-
-            SceneInstance instance = AddressableUtility.GetAsSceneInstance(scene);
-
-            Addressables.UnloadSceneAsync(instance);
+            throw new NotSupportedException("Addressable does not support immediate scene unload.");
         }
 
-        public async Task UnloadSceneAsync(Scene scene, UnloadSceneOptions unloadOptions)
+        protected override async Task OnUnloadSceneAsync(Scene scene, SceneUnloadParameters parameters)
         {
-            if (!scene.IsValid()) throw new ArgumentException("The specified scene is invalid.", nameof(scene));
-
             SceneInstance instance = AddressableUtility.GetAsSceneInstance(scene);
 
             await Addressables.UnloadSceneAsync(instance).Task;
