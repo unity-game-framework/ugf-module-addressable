@@ -26,6 +26,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Nothing.
 
+## 0.7.0-preview - 2020-02-19
+- [Commits](https://github.com/unity-game-framework/ugf-module-addressable/compare/0.6.0-preview...0.7.0-preview)
+- [Milestone](https://github.com/unity-game-framework/ugf-module-addressable/milestone/7?closed=1)
+
+### Changed
+- Package dependencies:
+    - `com.ugf.module.scenes`: from `0.4.0-preview` to `0.5.0-preview`.
+
 ## 0.6.0-preview - 2020-02-17
 - [Commits](https://github.com/unity-game-framework/ugf-module-addressable/compare/0.5.0-preview...0.6.0-preview)
 - [Milestone](https://github.com/unity-game-framework/ugf-module-addressable/milestone/6?closed=1)

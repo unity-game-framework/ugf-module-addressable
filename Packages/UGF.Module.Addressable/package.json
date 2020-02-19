@@ -1,7 +1,7 @@
 {
     "name": "com.ugf.module.addressable",
     "displayName": "UGF.Module.Addressable",
-    "version": "0.6.0-preview",
+    "version": "0.7.0-preview",
     "unity": "2019.3",
     "description": "No description.",
     "author": {
@@ -10,9 +10,9 @@
     },
     "dependencies": {
         "com.ugf.application": "4.1.0-preview",
-        "com.ugf.initialize": "2.2.0-preview",
+        "com.ugf.initialize": "2.3.0-preview",
         "com.ugf.module.assets": "0.3.0-preview",
-        "com.ugf.module.scenes": "0.4.0-preview",
+        "com.ugf.module.scenes": "0.5.0-preview",
         "com.ugf.logs": "2.0.0",
         "com.unity.addressables": "1.6.2"
     }
